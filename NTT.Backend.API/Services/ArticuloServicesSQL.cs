@@ -30,5 +30,12 @@ namespace NTT.Backend.API.Services
         {
             return _context.Articulo.FirstOrDefault(x => x.codigo == id);
         }
+
+        public Articulo Update(Articulo articulo)
+        {
+            _context.Articulo.Update(articulo);
+            _context.SaveChanges();
+            return articulo;
+        }
     }
 }

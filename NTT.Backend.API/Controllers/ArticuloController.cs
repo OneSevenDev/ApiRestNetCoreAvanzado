@@ -49,5 +49,19 @@ namespace NTT.Backend.API.Controllers
             }
             return Ok(_articuloServices.Insertar(articulo));
         }
+
+        [HttpPut]
+        public IActionResult Actualizar([FromBody] Articulo articulo)
+        {
+            if (articulo.codigo == 0)
+            {
+                return BadRequest("El codigo no debe ser 0");
+            }
+            if (string.IsNullOrEmpty(articulo.nombre))
+            {
+                return BadRequest("El nombre no puede ser vacio");
+            }
+            return Ok(_articuloServices.Update(articulo));
+        }
     }
 }

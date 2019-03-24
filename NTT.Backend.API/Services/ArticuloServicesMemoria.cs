@@ -36,5 +36,10 @@ namespace NTT.Backend.API.Services
 
             return _contexto.FirstOrDefault(x => x.codigo == id);
         }
+
+        public Articulo Update(Articulo articulo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
