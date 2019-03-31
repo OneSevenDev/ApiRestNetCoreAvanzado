@@ -15,5 +15,7 @@ namespace NTT.Backend.API.Contexto
         }
 
         public DbSet<Articulo> Articulo { get; set; }
+        public DbSet<TipoUsuario> TipoUsuario { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }
