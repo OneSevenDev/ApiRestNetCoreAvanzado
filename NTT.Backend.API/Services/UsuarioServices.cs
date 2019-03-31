@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NTT.Backend.API.Contexto;
 using NTT.Backend.API.DTO;
 using NTT.Backend.API.Helper;
@@ -20,15 +21,11 @@ namespace NTT.Backend.API.Services
 
         public UsuarioActualizarResponse Actualizar(UsuarioActualizarRequest request)
         {
-            byte[] clave = EncriptaHelper.EncryptToByte(request.clave);
-            Usuario usuario = new Usuario
-            {
-                idusuario = request.idusuario,
-                clave = clave,
-                login = request.login,
-                nombrecompleto = request.nombrecompleto,
-                idtipousuario = request.idtipousuario
-            };
+            Usuario usuario = _context.Usuario.Find(request.idusuario);
+            usuario.rutaimagen = request.rutaimagen;
+            usuario.nombrecompleto = request.nombrecompleto;
+            usuario.idtipousuario = request.idtipousuario;
+            
             _context.Usuario.Update(usuario);
             _context.SaveChanges();
             return new UsuarioActualizarResponse
@@ -58,19 +55,48 @@ namespace NTT.Backend.API.Services
             };
         }
 
+        public List<Usuario> Listar()
+        {
+            return _context.Usuario.Include("tipousuario").ToList();
+        }
+
+        public List<UsuarioTipousuario> ListarUsuarioConTipo()
+        {
+            return (from u in _context.Usuario
+                    join t in _context.TipoUsuario
+                    on u.idtipousuario equals t.idtipousuario
+                    select new UsuarioTipousuario
+                    {
+                        user = u,
+                        tipousuario = t
+                    }).ToList();
+        }
+
         public UsuarioLoginResponse Login(UsuarioLoginRequest request)
         {
             throw new NotImplementedException();
         }
 
-        public Usuario RecuperarPorId(int id)
+        public UsuarioObtenerResponse RecuperarPorId(int id)
         {
-            return _context.Usuario.Find(id);
+            Usuario usuario = _context.Usuario.Find(id);
+            return new UsuarioObtenerResponse
+            {
+                idusuario = usuario.idusuario,
+                nombrecompleto = usuario.nombrecompleto,
+                idtipousuario = usuario.idtipousuario,
+                rutaimagen = usuario.rutaimagen
+            };
         }
 
         public Usuario RecuperarPorLogin(string login)
         {
             return _context.Usuario.FirstOrDefault(t => t.login == login);
+        }
+
+        public Usuario RecuperarTodoPorId(int id)
+        {
+            return _context.Usuario.Find(id);
         }
     }
 }

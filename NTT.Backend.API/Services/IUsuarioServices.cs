@@ -10,7 +10,10 @@ namespace NTT.Backend.API.Services
 {
     public interface IUsuarioServices
     {
-        Usuario RecuperarPorId(int id);
+        List<Usuario> Listar();
+        List<UsuarioTipousuario> ListarUsuarioConTipo();
+        UsuarioObtenerResponse RecuperarPorId(int id);
+        Usuario RecuperarTodoPorId(int id);
         Usuario RecuperarPorLogin(string login);
         UsuarioLoginResponse Login(UsuarioLoginRequest request);
         UsuarioInsertarResponse Insertar(UsuarioInsertarRequest requeset);

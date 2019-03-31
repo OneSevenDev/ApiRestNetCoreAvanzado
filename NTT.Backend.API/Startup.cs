@@ -51,6 +51,7 @@ namespace NTT.Backend.API
             // services.AddTransient<IArticuloServices, ArticuloServicesMemoria>();
             services.AddTransient<IArticuloServices, ArticuloServicesSQL>();
             services.AddTransient<IUsuarioServices, UsuarioServices>();
+            services.AddTransient<ITipoUsuarioServices, TipoUsuarioServices>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

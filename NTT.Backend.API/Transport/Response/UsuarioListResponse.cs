@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NTT.Backend.API.Transport.Request
+namespace NTT.Backend.API.Transport.Response
 {
-    public class UsuarioActualizarRequest
+    public class UsuarioListResponse
     {
         public int idusuario { get; set; }
-        //public string login { get; set; }
-        //public string clave { get; set; }
+        public string login { get; set; }
         public string nombrecompleto { get; set; }
-        public string rutaimagen { get; set; }
         public int idtipousuario { get; set; }
+        public string nombretipousuario { get; set; }
     }
 }
