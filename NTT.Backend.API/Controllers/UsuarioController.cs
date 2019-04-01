@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NTT.Backend.API.Controllers;
 using NTT.Backend.API.Services;
 using NTT.Backend.API.Transport.Request;
 using NTT.Backend.API.Transport.Response;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace NTT.Backend.API.Controllers
 {

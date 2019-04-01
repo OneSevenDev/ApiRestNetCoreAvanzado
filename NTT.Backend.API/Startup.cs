@@ -42,6 +42,7 @@ namespace NTT.Backend.API
                 });
             });
             // signalr
+            services.AddSignalR();
             // base
             services.AddDbContext<VentasContext>(option =>
             {
@@ -64,6 +65,11 @@ namespace NTT.Backend.API
             }
 
             app.UseCors("AllowAll");
+            app.UseSignalR(routers =>
+            {
+                routers.MapHub<NotificaHub>("/message");
+            });
+
             app.UseMvc();
         }
     }
