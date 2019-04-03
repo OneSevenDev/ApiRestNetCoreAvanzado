@@ -67,7 +67,7 @@ namespace NTT.Backend.API
             app.UseCors("AllowAll");
             app.UseSignalR(routers =>
             {
-                routers.MapHub<NotificaHub>("/message");
+                routers.MapHub<NotificaHub>("/hupProxySignalR");
             });
 
             app.UseMvc();
