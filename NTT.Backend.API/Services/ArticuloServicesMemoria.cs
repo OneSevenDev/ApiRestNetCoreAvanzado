@@ -17,6 +17,11 @@ namespace NTT.Backend.API.Services
             _contexto.Add(new Articulo { codigo = 1, nombre = "Teclado", precio = 25 });
         }
 
+        public bool Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Articulo Insertar(Articulo articulo)
         {
             return null;

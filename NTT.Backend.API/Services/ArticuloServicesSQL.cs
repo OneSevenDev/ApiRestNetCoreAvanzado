@@ -14,6 +14,22 @@ namespace NTT.Backend.API.Services
         {
             _context = context;
         }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                Articulo articulo = _context.Articulo.Find(id);
+                _context.Articulo.Remove(articulo);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public Articulo Insertar(Articulo articulo)
         {
             _context.Articulo.Add(articulo);

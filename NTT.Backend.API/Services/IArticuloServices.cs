@@ -12,5 +12,6 @@ namespace NTT.Backend.API.Services
         Articulo Recuperar(int id);
         Articulo Insertar(Articulo articulo);
         Articulo Update(Articulo articulo);
+        bool Delete(int id);
     }
 }

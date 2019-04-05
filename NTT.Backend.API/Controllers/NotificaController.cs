@@ -56,6 +56,18 @@ namespace NTT.Backend.API.Controllers
             return Ok(response);
         }
 
+        [HttpPost]
+        public IActionResult Delete([FromBody] int codigo)
+        {
+            if (codigo <= 0)
+            {
+                return BadRequest("El id es incorrecto");
+            }
+            bool success = _articuloServices.Delete(codigo);
+            LoadListRealTime();
+            return Ok(success);
+        }
+
         private void LoadListRealTime()
         {
             List<Articulo> lista = _articuloServices.Listar();
